@@ -1,9 +1,8 @@
-package com.devsuperior.desafiocrud.controller;
+package com.devsuperior.desafiocrud.controllers;
 
 import com.devsuperior.desafiocrud.DTO.ClientDTO;
-import com.devsuperior.desafiocrud.entities.Client;
-import com.devsuperior.desafiocrud.repository.ClientRepository;
-import com.devsuperior.desafiocrud.service.ClientService;
+import com.devsuperior.desafiocrud.repositories.ClientRepository;
+import com.devsuperior.desafiocrud.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/clients")

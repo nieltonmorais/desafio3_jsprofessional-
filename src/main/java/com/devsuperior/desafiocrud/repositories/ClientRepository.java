@@ -1,4 +1,4 @@
-package com.devsuperior.desafiocrud.repository;
+package com.devsuperior.desafiocrud.repositories;
 
 import com.devsuperior.desafiocrud.entities.Client;
 import org.springframework.data.jpa.repository.JpaRepository;

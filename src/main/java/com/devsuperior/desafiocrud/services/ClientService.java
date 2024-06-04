@@ -1,8 +1,8 @@
-package com.devsuperior.desafiocrud.service;
+package com.devsuperior.desafiocrud.services;
 
 import com.devsuperior.desafiocrud.DTO.ClientDTO;
 import com.devsuperior.desafiocrud.entities.Client;
-import com.devsuperior.desafiocrud.repository.ClientRepository;
+import com.devsuperior.desafiocrud.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
