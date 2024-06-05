@@ -6,6 +6,7 @@ import com.devsuperior.desafiocrud.repositories.ClientRepository;
 import com.devsuperior.desafiocrud.services.exceptions.DatabaseException;
 import com.devsuperior.desafiocrud.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -13,10 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.NoSuchElementException;
 
 @Service
 public class ClientService {
@@ -38,9 +35,11 @@ public class ClientService {
     }
 
     @Transactional
-    public ClientDTO insert(Client client) {
-        Client cli = repository.save(client);
-        return new ClientDTO(cli);
+    public ClientDTO insert(ClientDTO dto) {
+        Client entity = new Client();
+        copyDtoToClient(dto, entity);
+        entity = repository.save(entity);
+        return new ClientDTO(entity);
     }
 
     @Transactional
