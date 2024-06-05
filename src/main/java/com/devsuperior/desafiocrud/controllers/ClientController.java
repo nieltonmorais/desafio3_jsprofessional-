@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -33,19 +35,16 @@ public class ClientController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClientDTO> findById(@PathVariable Long id) {
-        try {
-            ClientDTO clientDTO = service.findById(id);
-            return ResponseEntity.ok(clientDTO);
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        }
+        ClientDTO clientDTO = service.findById(id);
+        return ResponseEntity.ok(clientDTO);
     }
 
     @PostMapping
-    public ResponseEntity<ClientDTO> save(@RequestBody Client client){
+    public ResponseEntity<ClientDTO> insert(@RequestBody Client client){
         try {
-            ClientDTO clientDTO = service.save(client);
-            return ResponseEntity.ok(clientDTO);
+            ClientDTO clientDTO = service.insert(client);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(clientDTO.getId()).toUri();
+            return ResponseEntity.created(uri).body(clientDTO);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(400).build();
         }
